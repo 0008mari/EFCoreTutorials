@@ -7,11 +7,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreTutorials
 {
-    class Program
+
+    namespace EFCoreTutorials
     {
-        static void Main(string[] args)
+        class Program
         {
-            Console.WriteLine("Hello World!");
+            static void Main(string[] args)
+            {
+                using (var context = new SchoolContext())
+                {
+
+                    var std = new Student()
+                    {
+                        Name = "Bill"
+                    };
+
+                    context.Students.Add(std);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 
