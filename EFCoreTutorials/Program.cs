@@ -12,19 +12,17 @@ namespace EFCoreTutorials
     {
         class Program
         {
-            static void Main(string[] args)
+            private static void Main(string[] args)
             {
-                using (var context = new SchoolContext())
-                {
+                var context = new SchoolContext();
+                var studentsWithSameName = context.Students
+                                                  .Where(s => s.FirstName == GetName())
+                                                  .ToList();
+            }
 
-                    var std = new Student()
-                    {
-                        Name = "Bill"
-                    };
-
-                    context.Students.Add(std);
-                    context.SaveChanges();
-                }
+            public static string GetName()
+            {
+                return "Bill";
             }
         }
     }
